@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC Wallpapers</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090b14;color:white;font-family:Arial,sans-serif}
+header{padding:18px;background:#121626;position:sticky;top:0}
+h1{margin:0;color:#9b8cff}
+nav{display:flex;gap:8px;overflow:auto;padding:15px}
+button{background:#222b40;color:white;border:0;padding:12px;border-radius:12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px}
+.card{background:#151b2d;border-radius:15px;overflow:hidden}
+.card img{width:100%;height:220px;object-fit:cover}
+.card button{margin:5px}
+input{padding:12px;width:90%;margin:10px;border-radius:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>SC Wallpapers</h1>
+<p>Your screen. Your style.</p>
+<input id="search" placeholder="Search wallpapers...">
+</header>
+<nav>
+<button onclick="filter('All')">All</button>
+<button onclick="filter('Nature')">Nature</button>
+<button onclick="filter('Anime')">Anime</button>
+<button onclick="filter('Space')">Space</button>
+<button onclick="filter('Abstract')">Abstract</button>
+<button onclick="filter('Favorites')">❤️ Favorites</button>
+</nav>
+<div class="grid" id="grid"></div>
+<script>
+const wallpapers=[
+["Nature","Mountain","photo-1500530855697-b586d89ba3ee"],
+["Nature","Forest","photo-1448375240586-8826b2a7a2e"],
+["Nature","Ocean","photo-1500375592092-40eb2168fd21"],
+["Anime","Anime Sky","photo-1519608487953-e999c86e7455"],
+["Space","Galaxy","photo-1462331940025-496dfbfc7564"],
+["Abstract","Purple Dream","photo-1579546929518-9e396f3cc809"],
+["Nature","Waterfall","photo-1433086966358-54859d0ed716"],
+["Space","Starry Night","photo-1462331940025-496dfbfc7564"]
+];
+let current="All",favorites=[];
+function render(){
+let q=document.getElementById("search").value.toLowerCase();
+grid.innerHTML="";
+wallpapers.forEach((w,i)=>{
+if(current!=="All"&&current!=="Favorites"&&w[0]!==current)return;
+if(current==="Favorites"&&!favorites.includes(i))return;
+if(!w[1].toLowerCase().includes(q))return;
+let url=`https://images.unsplash.com/${w[2]}?auto=format&fit=crop&w=800`;
+grid.innerHTML+=`<div class="card"><img src="${url}"><h3>${w[1]}</h3><button onclick="fav(${i})">❤️</button><button onclick="download('${url}')">⬇ Download</button></div>`;
+});
+}
+function filter(c){current=c;render()}
+function fav(i){favorites.includes(i)?favorites=favorites.filter(x=>x!==i):favorites.push(i);render()}
+function download(url){let a=document.createElement("a");a.href=url;a.download="wallpaper.jpg";a.click()}
+search.oninput=render;
+render();
+</script>
+</body>
+  </html>
+  
