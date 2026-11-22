@@ -61,6 +61,64 @@ function fav(i){favorites.includes(i)?favorites=favorites.filter(x=>x!==i):favor
 function download(url){let a=document.createElement("a");a.href=url;a.download="wallpaper.jpg";a.click()}
 search.oninput=render;
 render();
+  
+// FULLSCREEN WALLPAPER PREVIEW
+grid.addEventListener("click", function(e) {
+  const img = e.target.closest(".card img");
+  if (!img) return;
+
+  const card = img.closest(".card");
+  const title = card.querySelector("h3").textContent;
+
+  const overlay = document.createElement("div");
+
+  overlay.style.cssText = `
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:rgba(0,0,0,0.96);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    padding:20px;
+    box-sizing:border-box;
+  `;
+
+  const close = document.createElement("button");
+  close.textContent = "✕";
+  close.style.cssText =
+    "position:absolute;top:20px;right:20px;font-size:25px;";
+
+  const preview = document.createElement("img");
+  preview.src = img.src;
+  preview.style.cssText =
+    "max-width:100%;max-height:75vh;object-fit:contain;border-radius:12px;";
+
+  const heading = document.createElement("h2");
+  heading.textContent = title;
+  heading.style.color = "white";
+
+  const btn = document.createElement("button");
+  btn.textContent = "⬇ Download Wallpaper";
+  btn.style.cssText = "padding:14px 22px;margin-top:15px;";
+
+  btn.onclick = function() {
+    download(img.src);
+  };
+
+  close.onclick = function() {
+    overlay.remove();
+  };
+
+  overlay.onclick = function(e) {
+    if (e.target === overlay) overlay.remove();
+  };
+
+  overlay.append(close, preview, heading, btn);
+  document.body.appendChild(overlay);
+});
+  
 </script>
 </body>
   </html>
