@@ -62,39 +62,49 @@ function download(url){let a=document.createElement("a");a.href=url;a.download="
 search.oninput=render;
 render()
   
-document.getElementById("grid").addEventListener("click", function(e) {
+grid.onclick = function(e) {
   const img = e.target.closest(".card img");
   if (!img) return;
 
   const card = img.closest(".card");
   const title = card.querySelector("h3").textContent;
 
-  const overlay = document.createElement("div");
-  overlay.style.cssText = `
-    position:fixed;inset:0;background:#000;
-    z-index:999999;display:flex;
-    flex-direction:column;align-items:center;
-    justify-content:center;padding:15px;
+  const modal = document.createElement("div");
+
+  modal.style.cssText = `
+    position:fixed;
+    inset:0;
+    z-index:999999;
+    background:#080914;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    padding:15px;
   `;
 
-  overlay.innerHTML = `
-    <button id="closePreview"
-    style="position:absolute;top:20px;right:20px">
-    ✕ Close</button>
-    <img src="${img.src}"
-    style="max-width:100%;max-height:75vh;object-fit:contain">
-    <h2 style="color:white">${title}</h2>
-    <button id="previewDownload">⬇ Download</button>
-  `;
+  const big = document.createElement("img");
+  big.src = img.src;
+  big.style.cssText =
+    "max-width:100%;max-height:75vh;object-fit:contain;";
 
-  document.body.appendChild(overlay);
+  const name = document.createElement("h2");
+  name.textContent = title;
+  name.style.color = "white";
 
-  overlay.querySelector("#closePreview").onclick =
-    () => overlay.remove();
+  const close = document.createElement("button");
+  close.textContent = "✕ Close";
 
-  overlay.querySelector("#previewDownload").onclick =
-    () => download(img.src);
-});
+  const down = document.createElement("button");
+  down.textContent = "⬇ Download";
+
+  close.onclick = () => modal.remove();
+  down.onclick = () => download(img.src);
+
+  modal.append(close, big, name, down);
+  document.body.appendChild(modal);
+};
+  
   
 
 </script>
