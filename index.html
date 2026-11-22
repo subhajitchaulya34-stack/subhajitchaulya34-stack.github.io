@@ -1,144 +1,101 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>S.C Tech</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  text-align: center;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-.container {
-  width: 100%;
-  min-height: 100vh;
-  padding: 30px 20px;
-}
-
-.profile {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid white;
-  display: block;
-  margin: 10px auto 25px;
-}
-
-h1 {
-  font-size: 42px;
-  margin: 10px 0;
-}
-
-.subtitle {
-  font-size: 22px;
-  margin: 20px 0;
-}
-
-.about {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 25px;
-  background: rgba(255,255,255,0.18);
-  border-radius: 25px;
-}
-
-.about h2 {
-  font-size: 30px;
-}
-
-.about p {
-  font-size: 20px;
-  line-height: 1.7;
-}
-
-button {
-  padding: 15px 35px;
-  border: none;
-  border-radius: 30px;
-  font-size: 20px;
-  cursor: pointer;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b14">
+  <meta name="description" content="SC Wallpapers - beautiful wallpapers for your phone.">
+  <title>SC Wallpapers</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <style>
+    :root{--bg:#090b14;--panel:#121626;--panel2:#191f32;--text:#f5f7ff;--muted:#9aa3bb;--accent:#8b7cff;--line:#262d43}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#25204b 0,transparent 34%),var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+    button,input{font:inherit}header{position:sticky;top:0;z-index:5;background:#090b14eF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1150px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.3px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#9b8cff,#5e52cf);display:grid;place-items:center;font-weight:900;color:white}
+    .navright{display:flex;align-items:center;gap:10px}.search{width:min(32vw,260px);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;color:white;outline:none}.install{border:0;background:var(--accent);color:white;border-radius:12px;padding:11px 15px;font-weight:700;cursor:pointer}
+    main{max-width:1150px;margin:auto;padding:28px 20px 60px}.hero{padding:30px 0 24px}.eyebrow{color:#b5adff;text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700}
+    h1{font-size:clamp(34px,6vw,58px);line-height:1.04;margin:12px 0}.hero p{color:var(--muted);max-width:570px;line-height:1.6;margin:0}
+    .categories{display:flex;gap:9px;overflow:auto;padding:18px 0 22px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}
+    .chip{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:#cbd1e2;padding:10px 15px;border-radius:30px;cursor:pointer}.chip.active{background:#302b61;border-color:#7064db;color:white}
+    .sectionhead{display:flex;align-items:center;justify-content:space-between;margin:8px 0 16px}.sectionhead h2{font-size:21px;margin:0}.sectionhead span{font-size:13px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.wall{position:relative;overflow:hidden;border-radius:17px;background:var(--panel);border:1px solid var(--line);min-height:250px;aspect-ratio:3/4}
+    .wall img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.wall:hover img{transform:scale(1.045)}
+    .wall:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#000b);pointer-events:none}
+    .wallinfo{position:absolute;z-index:1;bottom:12px;left:12px;right:12px;display:flex;align-items:end;justify-content:space-between;gap:8px}
+    .wallinfo strong{font-size:14px;text-shadow:0 1px 5px #000}.wallinfo small{display:block;color:#d5d8e3;font-size:11px;margin-top:4px}
+    .heart,.view{border:0;background:#101421d9;color:white;border-radius:10px;padding:9px;cursor:pointer}.empty{grid-column:1/-1;color:var(--muted);padding:35px;text-align:center;background:var(--panel);border-radius:14px}
+    footer{text-align:center;color:var(--muted);font-size:12px;padding:24px;border-top:1px solid var(--line)}
+    .modal{position:fixed;inset:0;z-index:10;background:#000d;display:none;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modalbox{width:min(900px,100%);max-height:92vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px}
+    .modalbox img{display:block;max-height:70vh;max-width:100%;object-fit:contain;margin:auto;border-radius:10px}.modalbar{display:flex;justify-content:space-between;align-items:center;padding:10px 2px 2px}.actions{display:flex;gap:8px}.actions a,.actions button{border:0;border-radius:10px;padding:10px 14px;background:var(--accent);color:white;text-decoration:none;cursor:pointer}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.wall{min-height:210px}}
+    @media(max-width:600px){.nav{padding:12px}.brand{font-size:17px}.logo{width:34px;height:34px}.search{width:34vw;padding:10px}.install{padding:10px;font-size:12px}main{padding:20px 13px 45px}.hero{padding:20px 4px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.wall{min-height:210px}.sectionhead h2{font-size:18px}}
+  </style>
 </head>
-
 <body>
-
-<div class="container">
-
-  <img src="profile.jpg" class="profile" alt="S.C Tech">
-
-  <h1>আমার ওয়েবসাইট<br>স্বাগতম! 🎉</h1>
-
-  <p class="subtitle">
-    এটা আমার প্রথম সুন্দর ওয়েবসাইট। ❤️
-  </p>
-
-  <div class="about">
-    <h2>About Me 👤</h2>
-
-    <p>
-      হ্যালো! আমি একজন ওয়েবসাইট শেখার শিক্ষার্থী।
-    </p>
-
-    <p>
-      আমি HTML, CSS এবং JavaScript শিখছি। 🚀
-    </p>
+<header><div class="nav">
+  <div class="brand"><div class="logo">SC</div><span>SC Wallpapers</span></div>
+  <div class="navright"><input id="search" class="search" type="search" placeholder="Search..." aria-label="Search wallpapers"><button id="install" class="install" hidden>Install</button></div>
+</div></header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">Your screen. Your style.</div>
+    <h1>Find your next<br><span style="color:#a99fff">wallpaper.</span></h1>
+    <p>Explore beautiful wallpapers for your phone. Choose a favourite, preview it, and save it to your device.</p>
+  </section>
+  <div class="categories" id="categories">
+    <button class="chip active" data-cat="All">All</button><button class="chip" data-cat="Nature">Nature</button>
+    <button class="chip" data-cat="Anime">Anime</button><button class="chip" data-cat="Abstract">Abstract</button>
+    <button class="chip" data-cat="Space">Space</button><button class="chip" data-cat="Minimal">Minimal</button>
+    <button class="chip" data-cat="Favorites">♥ Favorites</button>
   </div>
-
-  <button onclick="showMessage()">Click Me</button>
-
-</div
-  <script>
-function showMessage() {
-  const message = document.createElement("div");
-
-  message.innerHTML = `
-    <div style="font-size:50px;">❤️</div>
-    <h2>ধন্যবাদ! 🎉</h2>
-    <p>তুমি আমার ওয়েবসাইটে এসেছো! 😊</p>
-  `;
-
-  message.style.position = "fixed";
-  message.style.top = "50%";
-  message.style.left = "50%";
-  message.style.transform = "translate(-50%, -50%) scale(0)";
-  message.style.background = "white";
-  message.style.color = "#764ba2";
-  message.style.padding = "30px";
-  message.style.borderRadius = "25px";
-  message.style.textAlign = "center";
-  message.style.boxShadow = "0 10px 40px rgba(0,0,0,0.3)";
-  message.style.zIndex = "9999";
-  message.style.transition = "0.5s";
-
-  document.body.appendChild(message);
-
-  setTimeout(() => {
-    message.style.transform =
-      "translate(-50%, -50%) scale(1)";
-  }, 50);
-
-  setTimeout(() => {
-    message.style.transform =
-      "translate(-50%, -50%) scale(0)";
-
-    setTimeout(() => {
-      message.remove();
-    }, 500);
-  }, 2500);
+  <div class="sectionhead"><h2 id="heading">Popular wallpapers</h2><span id="count"></span></div>
+  <section class="grid" id="grid" aria-live="polite"></section>
+</main>
+<footer>© <span id="year"></span> SC Wallpapers · Made with care</footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Wallpaper preview">
+  <div class="modalbox"><img id="preview" alt="Wallpaper preview"><div class="modalbar"><strong id="previewTitle">Wallpaper</strong><div class="actions"><a id="download" href="#" target="_blank" rel="noopener">Open image</a><button id="close">Close</button></div></div></div>
+</div>
+<script>
+const photos = [
+ {title:"Misty Mountain",cat:"Nature",id:"photo-1500530855697-b586d89ba3ee"},
+ {title:"Forest Escape",cat:"Nature",id:"photo-1448375240586-882707db888b"},
+ {title:"Ocean Blue",cat:"Nature",id:"photo-1500375592092-40eb2168fd21"},
+ {title:"Golden Sunset",cat:"Nature",id:"photo-1470252649378-9c29740c9fa8"},
+ {title:"Purple Dreams",cat:"Abstract",id:"photo-1557683316-973673baf926"},
+ {title:"Neon Flow",cat:"Abstract",id:"photo-1550745165-9bc0b252726f"},
+ {title:"Soft Shapes",cat:"Minimal",id:"photo-1557682250-33bd709cbe85"},
+ {title:"Quiet Dunes",cat:"Minimal",id:"photo-1509316785289-025f5b846b35"},
+ {title:"Starry Sky",cat:"Space",id:"photo-1462331940025-496dfbfc7564"},
+ {title:"Galaxy Glow",cat:"Space",id:"photo-1464802686167-b939a6910659"},
+ {title:"Anime City Mood",cat:"Anime",id:"photo-1519608487953-e999c86e7455"},
+ {title:"Dreamy Night",cat:"Anime",id:"photo-1518709268805-4e9042af9f23"}
+];
+const url = p => `https://images.unsplash.com/${p.id}?auto=format&fit=crop&w=700&q=85`;
+let category="All", favorites=JSON.parse(localStorage.getItem("sc-favorites")||"[]");
+const grid=document.getElementById("grid"), search=document.getElementById("search");
+function render(){
+ const q=search.value.trim().toLowerCase();
+ const items=photos.filter(p=>(category==="All"|| (category==="Favorites"?favorites.includes(p.id):p.cat===category)) && (p.title.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)));
+ document.getElementById("heading").textContent=category==="Favorites"?"Your favorites":category==="All"?"Popular wallpapers":category+" wallpapers";
+ document.getElementById("count").textContent=items.length+" wallpapers";
+ grid.innerHTML=items.length?items.map(p=>`<article class="wall"><img loading="lazy" src="${url(p)}" alt="${p.title}"><div class="wallinfo"><div><strong>${p.title}</strong><small>${p.cat}</small></div><button class="heart" data-fav="${p.id}" aria-label="Add to favorites">${favorites.includes(p.id)?"♥":"♡"}</button><button class="view" data-view="${p.id}" aria-label="Preview wallpaper">↗</button></div></article>`).join(""):`<div class="empty">No wallpapers found. Try another search or category.</div>`;
 }
-  </script>
-
+document.getElementById("categories").addEventListener("click",e=>{const b=e.target.closest("button[data-cat]");if(!b)return;category=b.dataset.cat;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x===b));render()});
+search.addEventListener("input",render);
+grid.addEventListener("click",e=>{
+ const f=e.target.closest("[data-fav]");if(f){const id=f.dataset.fav;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem("sc-favorites",JSON.stringify(favorites));render();return}
+ const v=e.target.closest("[data-view]");if(v){const p=photos.find(x=>x.id===v.dataset.view);document.getElementById("preview").src=url(p);document.getElementById("previewTitle").textContent=p.title;document.getElementById("download").href=url(p);document.getElementById("modal").classList.add("show")}
+});
+document.getElementById("close").onclick=()=>document.getElementById("modal").classList.remove("show");
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("show")});
+document.getElementById("year").textContent=new Date().getFullYear();
+let deferredPrompt;const installBtn=document.getElementById("install");
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;installBtn.hidden=false});
+installBtn.addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.hidden=true});
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+render();
+</script>
 </body>
 </html>
